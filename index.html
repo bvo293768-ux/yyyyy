@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Счетчик</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f5f5f5;
+      }
+
+      .counter-container {
+        text-align: center;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .counter-value {
+        font-size: 48px;
+        margin: 20px 0;
+        color: #333;
+      }
+
+      .counter-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        transition: background-color 0.3s;
+      }
+
+      .counter-btn:hover {
+        background-color: #45a049;
+      }
+
+      .reset-btn {
+        background-color: #f44336;
+      }
+
+      .reset-btn:hover {
+        background-color: #d32f2f;
+      }
+
+      .decrement-btn {
+        background-color: #2196f3;
+      }
+
+      .decrement-btn:hover {
+        background-color: #0b7dda;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter-container">
+      <h1>Счетчик</h1>
+      <div class="counter-value" id="counter">0</div>
+      <div class="counter-controls">
+        <button class="counter-btn decrement-btn" id="decrement">-</button>
+        <button class="counter-btn reset-btn" id="reset">Сбросить</button>
+        <button class="counter-btn" id="increment">+</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const counterElement = document.getElementById("counter");
+        const incrementBtn = document.getElementById("increment");
+        const decrementBtn = document.getElementById("decrement");
+        const resetBtn = document.getElementById("reset");
+
+        let counter = 0;
+
+        function updateCounter() {
+          counterElement.textContent = counter;
+
+          if (counter > 0) {
+            counterElement.style.color = "#4CAF50";
+          } else if (counter < 0) {
+            counterElement.style.color = "#f44336";
+          } else {
+            counterElement.style.color = "#333";
+          }
+        }
+
+        incrementBtn.addEventListener("click", function () {
+          counter++;
+          updateCounter();
+        });
+
+        decrementBtn.addEventListener("click", function () {
+          counter--;
+          updateCounter();
+        });
+
+        resetBtn.addEventListener("click", function () {
+          counter = 0;
+          updateCounter();
+        });
+
+        updateCounter();
+      });
+    </script>
+  </body>
+</html>
